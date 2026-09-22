@@ -1,6 +1,6 @@
 name: inspect runner
-  #on:
-  push:
+on:
+  workflow_dispatch:
 jobs:
   inspect:
     runs-on: ubuntu-latest
