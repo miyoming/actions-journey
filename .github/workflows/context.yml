@@ -10,5 +10,6 @@ jobs:
           echo "repository name ${{  github.repository  }}" 
           echo "branch name ${{  github.ref  }}"
           echo "commit id ${{  github.sha  }}"
+          echo "event name is: ${{ github.event_name }}"
       - name: echo runner os
         run: echo "runner operating system ${{  runner.os  }}" 
