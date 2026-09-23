@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: echo containing vars context
-        run: echo region "${{  vars.DEPLOY_REGION  }}
+        run: echo "region ${{  vars.DEPLOY_REGION  }}
 
 
 
