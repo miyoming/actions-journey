@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: build stage
         id: ver
-        run: echo "${{  github.sha  }}" >> "$GITHUB_OUT"
+        run: echo "${{  github.sha  }}" >> "$GITHUB_OUTPUT"
 
   test:
     runs-on: ubuntu-latest
