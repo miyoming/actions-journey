@@ -10,7 +10,7 @@ jobs:
       - name: build stage
         id: ver
         run: | 
-          echo "version=${{  github.sha  }}" >> "$GITHUB_OUT"
+          echo "version=${{  github.sha  }}" >> "$GITHUB_OUTPUT"
           echo hostname
 
   test:
