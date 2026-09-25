@@ -11,7 +11,7 @@ jobs:
         id: ver
         run: | 
           echo "version=${{  github.sha  }}" >> "$GITHUB_OUTPUT"
-          echo hostname
+          hostname
 
   test:
     runs-on: ubuntu-latest
@@ -19,8 +19,8 @@ jobs:
     steps:
       - name: echo test stage
         run: | 
-          echo "test stage - ${{  needs.buid.outputs.version  }}"
-          echo hostname
+          echo "test stage - ${{  needs.build.outputs.version  }}"
+          hostname
 
   deploy:
     runs-on: ubuntu-latest
@@ -29,5 +29,5 @@ jobs:
       - name: output from build stage
         run: | 
           echo "Deploying ${{  needs.build.outputs.version  }}"
-          echo hostname
+          hostname
 
