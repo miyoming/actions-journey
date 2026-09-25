@@ -1,0 +1,27 @@
+name: dependent-jobs
+on:
+  push:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{  steps.ver.outputs.version  }}
+    steps:
+      - name: build stage
+        id: ver
+        run: echo "${{  github.sha  }}" >> "$GITHUB_OUT
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: echo test stage
+        run: echo "test stage"
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build, test]
+    steps:
+      - name: output from build stage
+        run: echo "Deploying ${{  needs.build.outputs.version  }}"
+
