@@ -10,4 +10,5 @@ jobs:
       - name: Flaky check
         run: cats
       - name: Stop test database
+        if: always()
         run: echo  "stopping database even there is failure"
