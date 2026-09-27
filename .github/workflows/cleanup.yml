@@ -1,6 +1,6 @@
 name: cleanup-failure
 on:
-  push:
+  workflow_dispatch:
 jobs:
   cleanup:
     runs-on: ubuntu-latest
