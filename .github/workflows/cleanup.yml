@@ -8,7 +8,7 @@ jobs:
       - name: Start test database
         run: echo "Starting test database"
       - name: Flaky check
-        run: cats
+        run: cat
 
       - name: Send Email - failure in starting test database
         if: failure()
