@@ -1,0 +1,17 @@
+name: context
+on:
+  push:
+jobs:
+  print_context:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo github context 
+        run: | 
+          echo "repository name ${{  github.repository  }}" 
+          echo "branch name ${{  github.ref  }}"
+          echo "commit id ${{  github.sha  }}"
+          echo "event name is: ${{ github.event_name }}"
+          echo "username that truggered the run ${{  github.actor  }}"
+          echo "brach short name ${{  github.ref_name  }}"
+      - name: echo runner os
+        run: echo "runner operating system ${{  runner.os  }}" 

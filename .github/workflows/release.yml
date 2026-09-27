@@ -1,0 +1,21 @@
+name: fan out-in
+on:
+  push:
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo lint
+        run: echo "lint"
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo unit-tests
+        run: echo "unit-tests"
+  package:
+    runs-on: ubuntu-latest
+    needs: [lint, unit-tests]
+    steps:
+      - name: echo package
+        run: echo "packaging"
+

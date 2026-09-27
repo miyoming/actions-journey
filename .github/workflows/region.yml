@@ -1,0 +1,12 @@
+name: region repository variable
+on:
+  push:
+jobs:
+  region:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo containing vars context
+        run: echo "${{  vars.DEPLOY_REGION  }}"
+
+
+
