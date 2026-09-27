@@ -11,6 +11,7 @@ jobs:
         run: cats
 
       - name: Send Email
+        if: failure()
         uses: hilarion5/send-mail@v1
         with:
           smtp-server: smtp.example.com
