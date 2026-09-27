@@ -16,7 +16,7 @@ jobs:
         with:
           smtp-server: smtp.gmail.com
           smtp-port: 587
-          smtp-secure: true
+          smtp-secure: false
           from-email: romeo.nagajr@gmail.com
           to-email: romeo.nagajr@gmail.com
           username: romeo.nagajr@gmail.com
