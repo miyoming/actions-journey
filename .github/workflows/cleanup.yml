@@ -9,29 +9,22 @@ jobs:
         run: echo "Starting test database"
       - name: Flaky check
         run: cats
-      - name: Send Email on Failure
-        # This condition ensures the step only runs if a previous step fails
-        if: failure() 
-        uses: dawidd6/action-send-mail@v3
+
+      - name: Send Email
+        uses: hilarion5/send-mail@v1
         with:
-          # SMTP Server Configuration
-          server_address: smtp.gmail.com
-          server_port: 587
+          smtp-server: smtp.example.com
+          smtp-port: 587
+          smtp-secure: true
+          from-email: romeo.nagajr@gmail.com
+          to-email: romeo.nagajr@gmail.com
           username: romeo.nagajr@gmail.com
           password: "xsfg ogms ngsu vbim"
-          
-          # Email Content
-          subject: "❌ Workflow Failed: ${{ github.repository }}"
-          to: romeo.nagajr@gmail.com
-          from: "GitHub Actions <ci-alerts@example.com>"
-          secure: true
-          body: |
-            The workflow ${{ github.workflow }} failed in job ${{ github.job }}.
-            
-            Commit: ${{ github.sha }}
-            Branch: ${{ github.ref_name }}
-            
-            View the logs here: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          subject: Test Email
+          body: This is a test email sent from GitHub Actions.
+          html: |
+            <h1>This is a test email</h1>
+            <p>Test Paragraph</p>
       - name: Stop test database
         if: always()
         run: echo  "stopping database even there is failure"
