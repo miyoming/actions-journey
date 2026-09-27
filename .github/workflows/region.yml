@@ -1,6 +1,6 @@
 name: region repository variable
 on:
-  push:
+  workflow_dispatch:
 jobs:
   region:
     runs-on: ubuntu-latest

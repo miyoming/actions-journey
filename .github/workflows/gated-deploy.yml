@@ -1,6 +1,6 @@
 name: conditionals
 on:
-  push:
+  workflow_dispatch:
 jobs:
   run-test:
     runs-on: ubuntu-latest

@@ -1,6 +1,6 @@
 name: context
 on:
-  push:
+  workflow_dispatch:
 jobs:
   print_context:
     runs-on: ubuntu-latest
@@ -11,7 +11,7 @@ jobs:
           echo "branch name ${{  github.ref  }}"
           echo "commit id ${{  github.sha  }}"
           echo "event name is: ${{ github.event_name }}"
-          echo "username that truggered the run ${{  github.actor  }}"
-          echo "brach short name ${{  github.ref_name  }}"
+          echo "username that triggered the run ${{  github.actor  }}"
+          echo "branch short name ${{  github.ref_name  }}"
       - name: echo runner os
         run: echo "runner operating system ${{  runner.os  }}" 
