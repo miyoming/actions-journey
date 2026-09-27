@@ -1,0 +1,13 @@
+name: cleanup-failure
+on:
+  push:
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start test database
+        run: echo "Starting test database"
+      - name: Flaky check
+        run: cats
+      - name: Stop test database
+        run: echo  "stopping database even there is failure"
