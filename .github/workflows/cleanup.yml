@@ -10,7 +10,7 @@ jobs:
       - name: Flaky check
         run: cats
 
-      - name: Send Email
+      - name: Send Email - failure in starting test database
         if: failure()
         uses: hilarion5/send-mail@v1
         with:
@@ -21,11 +21,18 @@ jobs:
           to-email: romeo.nagajr@gmail.com
           username: romeo.nagajr@gmail.com
           password: "xsfg ogms ngsu vbim"
-          subject: Test Email
-          body: This is a test email sent from GitHub Actions.
-          html: |
-            <h1>This is a test email</h1>
-            <p>Test Paragraph</p>
+          subject: Starting database failed!
+          body: |
+            The workflow ${{ github.workflow }} failed in job ${{ github.job }}.
+            
+            Commit: ${{ github.sha }}
+            Branch: ${{ github.ref_name }}
+            
+            View the logs here:  
+            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+  #        html: |
+  #          <h1>This is a test email</h1>
+  #          <p>Test Paragraph</p>
       - name: Stop test database
         if: always()
         run: echo  "stopping database even there is failure"
