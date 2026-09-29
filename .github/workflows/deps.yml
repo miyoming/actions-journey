@@ -5,23 +5,26 @@ jobs:
   pip:
     runs-on: ubuntu-latest
     steps:
-     - name: Checkout code
-       uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-     - name: Cache pip downloads
-       uses: actions/cache@v4
-       with:
-         path: ~/.cache/pip
-         key: pip-${{ hashFiles('requirements.txt') }}
-         restore-keys: |
-           pip-
+      - name: Cache pip downloads
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            pip-
 
-     - name: Install packages
-       uses: BSFishy/pip-action@v1
-       with:
-         packages: package
-         requirements: requirements.txt
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
 
-     - name: Run Python script
-       run: python main.py
+      - name: Install packages
+        uses: BSFishy/pip-action@v1
+        with:
+          packages: package
+          requirements: requirements.txt
+
 
