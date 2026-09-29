@@ -1,0 +1,27 @@
+name: pip-downloads
+on:
+  push:
+jobs:
+  pip:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Checkout code
+       uses: actions/checkout@v4
+
+     - name: Cache pip downloads
+       uses: actions/cache@v4
+       with:
+         path: ~/.cache/pip
+         key: pip-${{ hashFiles('requirements.txt') }}
+         restore-keys: |
+           pip-
+
+     - name: Install packages
+       uses: BSFishy/pip-action@v1
+       with:
+         packages: package
+         requirements: requirements.txt
+
+     - name: Run Python script
+       run: python main.py
+
