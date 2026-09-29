@@ -16,15 +16,6 @@ jobs:
           restore-keys: |
             pip-
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Install packages
-        uses: BSFishy/pip-action@v1
-        with:
-          packages: package
-          requirements: requirements.txt
-
+      - name: Install dependencies
+        run: python3 -m pip install --user -r requirements.txt
 
