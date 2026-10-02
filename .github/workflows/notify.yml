@@ -1,0 +1,16 @@
+name: reuse_secret
+on:
+  workflow_call:
+    secrets:
+      NOTIFY_TOKEN:
+        required: true
+    inputs:
+      environment:
+        type: string
+        required: true
+jobs:
+  reuse:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "environment - ${{  inputs.environment  }}  - secret - ${{  secrets.NOTIFY_TOKEN  }}"
+

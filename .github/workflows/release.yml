@@ -18,4 +18,9 @@ jobs:
     steps:
       - name: echo package
         run: echo "packaging"
-
+  secret_reusable:
+    uses: ./.github/workflows/notify.yml
+    secrets:
+      NOTIFY_TOKEN: ${{  secrets.NOTIFY_TOKEN  }}
+    with:
+      environment: pixel-post
