@@ -31,3 +31,9 @@ jobs:
           echo "Deploying ${{  needs.build.outputs.version  }}"
           hostname
 
+  reusable:
+    checks: 
+      uses: ./.github/workflows/checks.yml
+      with:
+        app-name: pixel-post
+
