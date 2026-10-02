@@ -1,0 +1,14 @@
+name: inspect runner
+on:
+  workflow_dispatch:
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+      - name: print kernel
+        run: uname
+      - name: ls
+        run: ls | wc -l  
+
