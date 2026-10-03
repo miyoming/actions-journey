@@ -1,0 +1,12 @@
+name: template_reusable
+on:
+  workflow_call:
+    inputs:
+      app-name:
+        type: string
+        required: true
+jobs:
+  input_name:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Checking ${{  inputs.app-name  }}"
