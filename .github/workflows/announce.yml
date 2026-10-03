@@ -8,4 +8,4 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/announce
         with:
-          app-name: pixel-post
+          app-name: pixelpost
