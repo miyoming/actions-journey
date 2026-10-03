@@ -1,6 +1,6 @@
 name: build_info
 on:
-  push:
+  workflow_dispatch:
 jobs:
   composite:
     runs-on: ubuntu-latest

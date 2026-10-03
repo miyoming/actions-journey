@@ -1,6 +1,6 @@
 name: pip-downloads
 on:
-  push:
+  workflow_dispatch:
 jobs:
   pip:
     runs-on: ubuntu-latest
