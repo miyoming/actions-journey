@@ -1,0 +1,11 @@
+name: annouce-workflow
+on:
+  push:
+jobs:
+  appname:
+    runs-on: ubuntu
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/announce
+        with:
+          app-name: pixel-post
