@@ -1,0 +1,19 @@
+name: guardrails
+on:
+  push:
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  tidy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: count files
+        run: ls | wc -l
+
+      - name: add readme.md
+        run: "![ci](https://github.com/miyoming/actions-journey/actions/workflows/tidy.yml/badge.svg)"
+
