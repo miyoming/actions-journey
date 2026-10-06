@@ -7,6 +7,7 @@ concurrency:
 jobs:
   tidy:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -16,4 +17,16 @@ jobs:
 
       - name: add readme.md
         run: |
-          echo "![ci](https://github.com/miyoming/actions-journey/actions/workflows/tidy.yml/badge.svg)" >> /root/actions-journey/README.md
+          echo "![ci](https://github.com/miyoming/actions-journey/actions/workflows/tidy.yml/badge.svg)" >> ~/README.md
+
+
+      - name: Commit and Push Changes
+        run: |
+          cd $GITHUB_WORKSPACE
+          git config --global user.name "romeo.naga]"
+          git config --global user.email "romeo.nagajr@gmail.com"
+
+          git add README.md
+          # Only commit if there are actual changes to prevent workflow errors
+          git diff-index --quiet HEAD || git commit -m "docs: auto-update README.md"
+          git push
