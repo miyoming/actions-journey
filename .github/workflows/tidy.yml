@@ -15,5 +15,6 @@ jobs:
         run: ls | wc -l
 
       - name: add readme.md
-        run: "![ci](https://github.com/miyoming/actions-journey/actions/workflows/tidy.yml/badge.svg)"
+        run: |
+          echo "![ci](https://github.com/miyoming/actions-journey/actions/workflows/tidy.yml/badge.svg)" >> readme.md
 
