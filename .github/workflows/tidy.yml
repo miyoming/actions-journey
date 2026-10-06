@@ -17,7 +17,7 @@ jobs:
 
       - name: add readme.md
         run: |
-          echo "![ci](https://github.com/miyoming/actions-journey/actions/workflows/tidy.yml/badge.svg)" >> ~/README.md
+          echo "![ci](https://github.com/miyoming/actions-journey/actions/workflows/tidy.yml/badge.svg)" >> README.md
 
 
       - name: Commit and Push Changes
