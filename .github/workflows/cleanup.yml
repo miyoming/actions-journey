@@ -1,0 +1,38 @@
+name: cleanup-failure
+on:
+  workflow_dispatch:
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start test database
+        run: echo "Starting test database"
+      - name: Flaky check
+        run: cat
+
+      - name: Send Email - failure in starting test database
+        if: failure()
+        uses: hilarion5/send-mail@v1
+        with:
+          smtp-server: smtp.gmail.com
+          smtp-port: 587
+          smtp-secure: false
+          from-email: romeo.nagajr@gmail.com
+          to-email: romeo.nagajr@gmail.com
+          username: romeo.nagajr@gmail.com
+          password: "xsfg ogms ngsu vbim"
+          subject: Starting database failed!
+          body: |
+            The workflow ${{ github.workflow }} failed in job ${{ github.job }}.
+            
+            Commit: ${{ github.sha }}
+            Branch: ${{ github.ref_name }}
+            
+            View the logs here:  
+            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+  #        html: |
+  #          <h1>This is a test email</h1>
+  #          <p>Test Paragraph</p>
+      - name: Stop test database
+        if: always()
+        run: echo  "stopping database even there is failure"

@@ -1,0 +1,30 @@
+name: guardrails
+on:
+  workflow_dispatch:
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  tidy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    timeout-minutes: 10
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: count files
+        run: ls | wc -l
+
+
+      - name: Generate a text file
+        run: |
+          echo "![ci](https://github.com/priya/demo/actions/workflows/ci.yml/badge.svg)" >> README.md
+
+      # 4. Use the Marketplace action to commit and push
+      - name: Commit and Push Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "modify readme"
+          file_pattern: 'README.md' # Optional: pushes only this file (defaults to all changes)

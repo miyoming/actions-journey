@@ -1,0 +1,9 @@
+name: first-push
+on:
+  workflow_dispatch:
+jobs:
+  first-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "print echo"
+        run: echo "ryan ryan pusa"
