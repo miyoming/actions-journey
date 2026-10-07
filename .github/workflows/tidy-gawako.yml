@@ -1,6 +1,6 @@
 name: guardrails
 on:
-  workflow_push:
+  workflow_dispatch:
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true

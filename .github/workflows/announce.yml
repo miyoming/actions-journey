@@ -1,6 +1,6 @@
 name: annouce-workflow
 on:
-  push:
+  workflow_dispatch:
 jobs:
   appname:
     runs-on: ubuntu-latest
