@@ -1,4 +1,4 @@
-name: tidy
+nsame: tidy
 on: push
 concurrency:
   group: tidy-${{ github.ref }}
