@@ -1,20 +1,20 @@
-cd /root/actions-journey
-mkdir -p .github/workflows
-cat > .github/workflows/tidy.yml <<'YML'
-name: tidy
-on: push
+name: guardrails
+on:
+  workflow_push:
 concurrency:
-  group: tidy-${{ github.ref }}
+  group: ci-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  checks:
+  tidy:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
-      - name: Check out the repository
+      - name: checkout
         uses: actions/checkout@v4
-      - name: Count repository files
-        run: find . -type f | wc -l
+
+      - name: count files
+        run: ls | wc -l
+
 YML
 actionlint .github/workflows/tidy.yml
 login=$(curl -s -H "Authorization: token $(cat /root/.github/token)" https://api.github.com/user | jq -r '.login // empty')
