@@ -1,4 +1,4 @@
-nam2: first-push
+name: first-push
 on:
   push:
 jobs:
