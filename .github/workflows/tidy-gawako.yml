@@ -20,11 +20,11 @@ jobs:
 
       - name: Generate a text file
         run: |
-          echo "This file was created by GitHub Actions on $(date)" > dynamic-report.txt
+          echo "![ci](https://github.com/priya/demo/actions/workflows/ci.yml/badge.svg)" >> README.md
 
       # 4. Use the Marketplace action to commit and push
       - name: Commit and Push Changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "automated: updated dynamic-report.txt"
-          file_pattern: 'dynamic-report.txt' # Optional: pushes only this file (defaults to all changes)
+          commit_message: "modify readme"
+          file_pattern: 'README.md' # Optional: pushes only this file (defaults to all changes)
