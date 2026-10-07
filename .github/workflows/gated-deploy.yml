@@ -1,0 +1,16 @@
+name: conditionals
+on:
+  workflow_dispatch:
+jobs:
+  run-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: testing
+        run: echo "Testing"
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        if: github.ref == 'refs/heads/main'
+        run: echo "Deploying"
+

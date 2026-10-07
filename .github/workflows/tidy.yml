@@ -1,0 +1,41 @@
+name: guardrails
+on:
+  push:
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  tidy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: count files
+        run: ls | wc -l
+
+YML
+actionlint .github/workflows/tidy.yml
+login=$(curl -s -H "Authorization: token $(cat /root/.github/token)" https://api.github.com/user | jq -r '.login // empty')
+[ -n "$login" ] || { echo "No GitHub login - check /root/.github/token" >&2; exit 1; }
+echo "![tidy](https://github.com/$login/actions-journey/actions/workflows/tidy.yml/badge.svg)" >> README.md
+git add .github/workflows/tidy.yml README.md
+git commit -m "Add tidy workflow with guardrails and badge"
+git push -u origin main
+# GitHub needs up to a minute to finish the run - wait for THIS
+# commit's run before reading its result
+tok=$(cat /root/.github/token)
+login=$(curl -s -H "Authorization: token $tok" https://api.github.com/user | jq -r '.login // empty')
+[ -n "$login" ] || { echo "No GitHub login - check /root/.github/token" >&2; exit 1; }
+sha=$(git -C /root/actions-journey rev-parse HEAD)
+run=""
+for _ in $(seq 1 18); do
+  run=$(curl -s -H "Authorization: token $tok" \
+    "https://api.github.com/repos/$login/actions-journey/actions/workflows/tidy.yml/runs?per_page=20" \
+    | jq -c --arg sha "$sha" '[.workflow_runs[]? | select(.head_sha == $sha and .status == "completed")][0] // empty')
+  [ -n "$run" ] && break
+  sleep 10
+done
+[ -n "$run" ] || { echo "tidy.yml has no finished run for $sha after 180s" >&2; exit 1; }
+printf '%s' "$run" | jq -r '"run \(.id) finished with conclusion \(.conclusion)"'
