@@ -1,6 +1,6 @@
-name: first-push
+nam2: first-push
 on:
-  workflow_dispatch:
+  push:
 jobs:
   first-push:
     runs-on: ubuntu-latest
