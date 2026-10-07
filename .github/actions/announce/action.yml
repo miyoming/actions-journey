@@ -1,0 +1,12 @@
+name: announce
+description: announcement
+inputs:
+  app-name:
+    description: app name
+    required: true
+    default: ryan
+runs:
+  using: composite
+  steps:
+    - run: echo "your app-name is ${{ inputs.app-name }}"
+      shell: bash
