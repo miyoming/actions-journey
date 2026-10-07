@@ -1,5 +1,5 @@
 cd /root/actions-journey
-mkdir -p .github/workflows
+mkdir -p .github/workflowsa
 cat > .github/workflows/tidy.yml <<'YML'
 name: tidy
 on: push
