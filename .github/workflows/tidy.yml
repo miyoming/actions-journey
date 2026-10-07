@@ -1,6 +1,5 @@
 name: tidy
-on:
-  workflow_dispatch:
+on: push
 concurrency:
   group: tidy-${{ github.ref }}
   cancel-in-progress: true
